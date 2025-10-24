@@ -1,4 +1,4 @@
-package com.warehouse;
+package com.warehouse.entity;
 
 public class Product {
     private String id;
@@ -18,11 +18,17 @@ public class Product {
     public int getQuantity() { return quantity; }
     public int getReorderThreshold() { return reorderThreshold; }
 
-    public void setQuantity(int quantity) { this.quantity = quantity; }
+    public void increaseStock(int amount) {
+        if (amount > 0) this.quantity += amount;
+    }
+
+    public void decreaseStock(int amount) {
+        if (amount > 0 && amount <= quantity) this.quantity -= amount;
+        else throw new IllegalArgumentException("Insufficient stock for " + name);
+    }
 
     @Override
     public String toString() {
-        return String.format("Product[id=%s, name=%s, qty=%d, threshold=%d]",
-                id, name, quantity, reorderThreshold);
+        return String.format("%s (Qty: %d, Threshold: %d)", name, quantity, reorderThreshold);
     }
 }
