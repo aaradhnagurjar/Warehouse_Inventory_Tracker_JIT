@@ -8,7 +8,7 @@ public class AlertService implements StockObserver {
     @Override
     public void onLowStock(Product product) {
         // Simple console output for now, but imagine this sends an email!
-        System.out.println("⚠️  RESTOCK ALERT: Low stock for " + product.getName()
+        System.out.println("  RESTOCK ALERT: Low stock for " + product.getName()
                 + " – only " + product.getQuantity() + " left! (Need to hit " + product.getReorderThreshold() + ")");
     }
 }
